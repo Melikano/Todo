@@ -1,6 +1,6 @@
 <template>
   <div>
-    <todo-list :todos="todos" :onTodoClicked="toggleTodo" />
+    <todo-list :todos="todos" @click="toggleTodo" />
   </div>
 </template>
 

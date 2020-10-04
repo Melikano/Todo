@@ -4,7 +4,7 @@
       v-for="todo in todos"
       :key="todo.id"
       :class="todo.done ? 'done' : ''"
-      @click="onTodoClicked(todo.id)"
+      @click="$emit('click', todo.id)"
     >
       {{ todo.text }}
     </li>
@@ -20,10 +20,6 @@ export default Vue.extend({
       type: Array as PropType<
         Array<{ id: string; text: string; done: boolean }>
       >,
-      required: true,
-    },
-    onTodoClicked: {
-      type: Function,
       required: true,
     },
   },
