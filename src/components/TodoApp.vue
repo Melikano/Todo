@@ -1,9 +1,12 @@
 <template>
   <div>
-    <todo-list :todos="todos" @click="toggleTodo">
+    <todo-list :todos="filterTodos(todos)" @click="toggleTodo">
       <template #title><h2>what to do today</h2></template>
     </todo-list>
     <add-todo @submit="addNewTodo" />
+    <button @click="setFilter(filters.done)">done</button>
+    <button @click="setFilter(filters.pending)">pending</button>
+    <button @click="setFilter(filters.all)">all</button>
   </div>
 </template>
 
@@ -11,7 +14,10 @@
 import Vue from "vue";
 import TodoList from "./TodoList.vue";
 import AddTodo from "./AddTodo.vue";
+import type {VisibilityFilter, Todo} from '../types';
+import {visibilityType} from '../constants';
 
+const filters = visibilityType;
 export default Vue.extend({
   name: "Todo",
   components: {
@@ -23,6 +29,8 @@ export default Vue.extend({
       { id: "1", text: "get-milk", done: false },
       { id: "2", text: "study", done: false },
     ],
+    filters,
+    filter: filters.all,
   }),
   methods: {
     toggleTodo: function(todoId: string) {
@@ -34,6 +42,20 @@ export default Vue.extend({
       const id = (this.todos.length + 1).toString();
       this.todos = [...this.todos, { id, text: todoText, done: false }];
     },
+    setFilter: function(filter: VisibilityFilter){
+      this.filter = filter;
+    },
+    filterTodos: function(todos: Array<Todo>){
+      const {filter} = this;
+      switch(filter){
+        case visibilityType.done :
+          return this.todos.filter(todo => todo.done);
+        case visibilityType.pending :
+          return this.todos.filter(todo => !todo.done)
+        default :
+          return this.todos;
+      }
+    }
   },
 });
 </script>
