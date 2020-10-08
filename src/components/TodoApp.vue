@@ -1,6 +1,8 @@
 <template>
   <div>
-    <todo-list :todos="todos" @click="toggleTodo" />
+    <todo-list :todos="todos" @click="toggleTodo">
+      <template #title><h3>what to do today</h3></template>
+    </todo-list>
     <add-todo @submit="addNewTodo" />
   </div>
 </template>

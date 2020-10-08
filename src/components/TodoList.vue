@@ -1,5 +1,8 @@
 <template>
   <ul>
+    <slot name="title">
+      <h2>What to do on {{ new Date().toString().substring(0, 10) }}</h2>
+    </slot>
     <li
       v-for="todo in todos"
       :key="todo.id"
@@ -13,6 +16,9 @@
 
 <script lang="ts">
 import Vue, { PropType } from "vue";
+
+const today = new Date();
+console.log(today);
 export default Vue.extend({
   name: "TodoList",
   props: {
@@ -26,6 +32,9 @@ export default Vue.extend({
 });
 </script>
 <style scoped>
+ul {
+  list-style-type: none;
+}
 .done {
   text-decoration: line-through;
 }
