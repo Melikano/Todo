@@ -14,8 +14,8 @@
 import Vue from "vue";
 import TodoList from "./TodoList.vue";
 import AddTodo from "./AddTodo.vue";
-import type {VisibilityFilter} from '../types/types';
-import {visibilityType} from '../constants/constants';
+import type { VisibilityFilter } from '../types/types';
+import { visibilityType } from '../constants/constants';
 
 const filters = visibilityType;
 export default Vue.extend({

@@ -16,6 +16,7 @@
 
 <script lang="ts">
 import Vue, { PropType } from "vue";
+import { Todo } from "../types/types";
 
 const today = new Date();
 console.log(today);
@@ -23,9 +24,7 @@ export default Vue.extend({
   name: "TodoList",
   props: {
     todos: {
-      type: Array as PropType<
-        Array<{ id: string; text: string; done: boolean }>
-      >,
+      type: Array as PropType<Array<Todo>>,
       required: true,
     },
   },
