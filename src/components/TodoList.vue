@@ -1,7 +1,7 @@
 <template>
   <ul>
     <slot name="title">
-      <h2>What to do on {{ new Date().toString().substring(0, 10) }}</h2>
+      <h1>What to do on {{ new Date().toString().substring(0, 10) }}</h1>
     </slot>
     <li
       v-for="todo in todos"
