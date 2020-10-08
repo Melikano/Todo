@@ -18,8 +18,6 @@
 import Vue, { PropType } from "vue";
 import { Todo } from "../types/types";
 
-const today = new Date();
-console.log(today);
 export default Vue.extend({
   name: "TodoList",
   props: {

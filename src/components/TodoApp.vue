@@ -1,12 +1,10 @@
 <template>
   <div>
+    <tab-bar :tabs="Object.values(filters)" @on-tab-changed="setFilter" />
     <todo-list :todos="filteredTodos" @click="toggleTodo">
       <template #title><h2>what to do today</h2></template>
     </todo-list>
     <add-todo @submit="addNewTodo" />
-    <button @click="setFilter(filters.done)">done</button>
-    <button @click="setFilter(filters.pending)">pending</button>
-    <button @click="setFilter(filters.all)">all</button>
   </div>
 </template>
 
@@ -14,6 +12,7 @@
 import Vue from "vue";
 import TodoList from "./TodoList.vue";
 import AddTodo from "./AddTodo.vue";
+import TabBar from './TabBar.vue';
 import type { VisibilityFilter } from '../types/types';
 import { visibilityType } from '../constants/constants';
 
@@ -23,6 +22,7 @@ export default Vue.extend({
   components: {
     TodoList,
     AddTodo,
+    TabBar,
   },
   data: () => ({
     todos: [
